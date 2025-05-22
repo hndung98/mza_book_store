@@ -1,6 +1,7 @@
+import { useAtomValue } from "jotai";
+
 import ProductGrid from "@/components/product-grid";
 import Section from "@/components/section";
-import { useAtomValue } from "jotai";
 import { flashSaleProductsState } from "@/state";
 
 export default function FlashSales() {

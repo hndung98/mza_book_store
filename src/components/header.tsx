@@ -11,6 +11,8 @@ import { BackIcon } from "./vectors";
 import { useMemo } from "react";
 import { useRouteHandle } from "@/hooks";
 
+const APP_NAME = "Dark Store";
+
 export default function Header() {
   const categories = useAtomValue(categoriesStateUpwrapped);
   const navigate = useNavigate();
@@ -33,7 +35,10 @@ export default function Header() {
     return (
       <div className="h-14 w-full flex items-center px-4 py-2">
         {/* <img src={headerLogoImage} className="max-h-full flex-none" /> */}
-        <img src={logo1} className="max-h-full"/>
+        <img src={logo1} className="max-h-full" />
+        <p className="ml-2 text-2xl font-extrabold bg-gradient-to-r from-purple-500 to-pink-500 text-transparent bg-clip-text">
+          {APP_NAME.toLocaleUpperCase()}
+        </p>
       </div>
     );
   }

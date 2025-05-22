@@ -1,14 +1,14 @@
+import { useAtomValue } from "jotai";
+
 import Section from "@/components/section";
 import TransitionLink from "@/components/transition-link";
-import { useAtomValue } from "jotai";
-import { Link, useNavigate } from "react-router-dom";
 import { categoriesState } from "@/state";
 
 export default function Category() {
   const categories = useAtomValue(categoriesState);
 
   return (
-    <Section title="Danh mục sản phẩm" viewMoreTo="/categories">
+    <Section title="Categories" viewMoreTo="/categories">
       <div className="pt-2.5 pb-4 flex space-x-6 overflow-x-auto px-4">
         {categories.map((category) => (
           <TransitionLink

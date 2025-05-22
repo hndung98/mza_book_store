@@ -1,9 +1,10 @@
 import Carousel from "@/components/carousel";
-import { useAtomValue } from "jotai";
-import { bannersState } from "@/state";
+import book_banner_1 from "@/static/banners/book_banner_1.jpg";
+import book_banner_2 from "@/static/banners/book_banner_2.jpg";
+import book_banner_3 from "@/static/banners/book_banner_3.jpg";
 
 export default function Banners() {
-  const banners = useAtomValue(bannersState);
+  const banners = [book_banner_1, book_banner_2, book_banner_3];
 
   return (
     <Carousel

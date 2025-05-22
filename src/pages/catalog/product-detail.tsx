@@ -57,7 +57,7 @@ export default function ProductDetailPage() {
           </div>
           {!!product.originalPrice && (
             <div className="text-2xs text-subtitle line-through">
-              {formatPrice(product.price)}
+              {formatPrice(product.originalPrice)}
             </div>
           )}
           <div className="text-sm mt-1">{product.name}</div>

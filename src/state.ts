@@ -14,7 +14,7 @@ export const bannersState = atom(() =>
   requestWithFallback<string[]>("/banners", [])
 );
 
-export const tabsState = atom(["Tất cả", "Sách", "Khác"]);
+export const tabsState = atom(["Tất cả", "Quần", "Áo"]);
 
 export const selectedTabIndexState = atom(0);
 

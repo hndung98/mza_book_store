@@ -18,7 +18,7 @@ export default function Section(props: PropsWithChildren<SectionProps>) {
             className="text-sm font-medium text-primary flex items-center space-x-1 p-2 cursor-pointer flex-none"
             to={props.viewMoreTo}
           >
-            <span>Xem thêm</span>
+            <span>View more</span>
             <ChevronRight />
           </TransitionLink>
         )}

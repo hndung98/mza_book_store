@@ -1,23 +1,23 @@
 [
   {
     "id": 1,
-    "name": "Áo len",
-    "image": "https://stc-zmp.zadn.vn/zaui-fashion/category/ao-len.webp"
+    "name": "Tiểu thuyết",
+    "image": "https://stc-zmp.zadn.vn/zaui-fashion/category/phu-kien.webp"
   },
   {
     "id": 2,
-    "name": "Blazer",
-    "image": "https://stc-zmp.zadn.vn/zaui-fashion/category/blazer.webp"
+    "name": "Trinh thám",
+    "image": "https://stc-zmp.zadn.vn/zaui-fashion/category/phu-kien.webp"
   },
   {
     "id": 3,
-    "name": "Đầm",
-    "image": "https://stc-zmp.zadn.vn/zaui-fashion/category/dam.webp"
+    "name": "Lịch sử",
+    "image": "https://stc-zmp.zadn.vn/zaui-fashion/category/phu-kien.webp"
   },
   {
     "id": 4,
-    "name": "Áo phông",
-    "image": "https://stc-zmp.zadn.vn/zaui-fashion/category/ao-phong.webp"
+    "name": "Self-help",
+    "image": "https://stc-zmp.zadn.vn/zaui-fashion/category/phu-kien.webp"
   },
   {
     "id": 5,

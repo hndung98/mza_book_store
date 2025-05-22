@@ -43,9 +43,11 @@ export default function ProductItem(props: ProductItemProps) {
             <div className="mt-0.5 text-sm font-medium">
               {formatPrice(props.product.price)}
             </div>
-            <div className="text-3xs text-subtitle line-through">
-              {formatPrice(props.product.price)}
-            </div>
+            {props.product.originalPrice && (
+              <div className="text-3xs text-subtitle line-through">
+                {formatPrice(props.product.originalPrice)}
+              </div>
+            )}
           </div>
         </>
       )}

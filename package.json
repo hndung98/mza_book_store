@@ -32,7 +32,8 @@
     "react-router-dom": "^6.23.0",
     "resize-observer-polyfill": "^1.5.1",
     "zmp-sdk": "^2.41.0",
-    "zmp-ui": "^1.11.5"
+    "zmp-ui": "^1.11.5",
+    "zustand": "^5.0.5"
   },
   "devDependencies": {
     "@types/node": "^22.8.2",
