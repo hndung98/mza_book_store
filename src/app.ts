@@ -2,6 +2,7 @@
 import { createElement } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
+import { SnackbarProvider } from "zmp-ui";
 
 // Router
 import router from "@/router";
@@ -22,4 +23,10 @@ if (!window.APP_CONFIG) {
 
 // Mount the app
 const root = createRoot(document.getElementById("app")!);
-root.render(createElement(RouterProvider, { router }));
+root.render(
+  createElement(
+    SnackbarProvider,
+    undefined,
+    createElement(RouterProvider, { router })
+  )
+);

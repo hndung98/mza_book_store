@@ -1,11 +1,17 @@
 import CategoryTabs from "@/components/category-tabs";
 import SearchBar from "@/components/search-bar";
-import TransitionLink from "@/components/transition-link";
 import { useAtomValue } from "jotai";
 import { useNavigate } from "react-router-dom";
 import { categoriesState } from "@/state";
 import { useEffect, useState } from "react";
-import { Button, Icon, Input } from "zmp-ui";
+import {
+  Button,
+  Icon,
+  Input,
+  Modal,
+  SnackbarProvider,
+  useSnackbar,
+} from "zmp-ui";
 
 const API_URL = "http://127.0.0.1:3000/api/native/categories";
 // const API_URL = "https://lukakuvic.vercel.app/api/native/categories";
@@ -15,16 +21,28 @@ type CategoryType = {
 };
 export default function CategoryListPage() {
   const navigate = useNavigate();
+  const { openSnackbar } = useSnackbar();
+
   const [newCategories, setNewCategories] = useState<CategoryType[]>([]);
 
   const categories = useAtomValue(categoriesState);
 
   const [newCategoryName, setNewCategoryName] = useState<string>("");
+  const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
 
   const token = import.meta.env.VITE_API_ACCESS_TOKEN || "";
 
   const handleCreateNewCategory = () => {
-    console.log({ newCategory: newCategoryName });
+    openSnackbar({
+      icon: true,
+      text: `Category: ${newCategoryName}`,
+      action: {
+        text: "Undo",
+        close: true,
+      },
+      type: "countdown",
+    });
+    setOpenConfirmationModal(true);
     fetch(API_URL, {
       method: "POST",
       headers: {
@@ -114,6 +132,27 @@ export default function CategoryListPage() {
           </Button>
         </div>
       </div>
+      <Modal
+        actions={[
+          {
+            text: "Cancel",
+            onClick() {
+              setOpenConfirmationModal(false);
+            },
+          },
+          {
+            close: true,
+            highLight: true,
+            text: "OK",
+            onClick() {
+              setOpenConfirmationModal(false);
+            },
+          },
+        ]}
+        description="Are you sure?"
+        title="Confirmation"
+        visible={openConfirmationModal}
+      />
     </>
   );
 }
