@@ -1,10 +1,12 @@
-import { Outlet } from "react-router-dom";
-import Header from "./header";
-import Footer from "./footer";
 import { Suspense } from "react";
-import { PageSkeleton } from "./skeleton";
 import { Toaster } from "react-hot-toast";
-import { ScrollRestoration } from "./scroll-restoration";
+import { Outlet } from "react-router-dom";
+
+import Footer from "@/components/footer";
+import Header from "@/components/header";
+import LoginModal from "@/components/login-modal";
+import { ScrollRestoration } from "@/components/scroll-restoration";
+import { PageSkeleton } from "@/components/skeleton";
 
 export default function Layout() {
   return (
@@ -22,6 +24,7 @@ export default function Layout() {
           top: "calc(50% - 24px)",
         }}
       />
+      <LoginModal />
       <ScrollRestoration />
     </div>
   );

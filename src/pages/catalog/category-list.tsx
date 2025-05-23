@@ -1,19 +1,16 @@
+import { useAtomValue } from "jotai";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button, Icon, Input, Modal, useSnackbar } from "zmp-ui";
+
 import CategoryTabs from "@/components/category-tabs";
 import SearchBar from "@/components/search-bar";
-import { useAtomValue } from "jotai";
-import { useNavigate } from "react-router-dom";
 import { categoriesState } from "@/state";
-import { useEffect, useState } from "react";
-import {
-  Button,
-  Icon,
-  Input,
-  Modal,
-  SnackbarProvider,
-  useSnackbar,
-} from "zmp-ui";
+import { useAccessTokenStore } from "@/stores/auth-store";
 
-const API_URL = "http://127.0.0.1:3000/api/native/categories";
+const API_PREFIX =
+  import.meta.env.VITE_API_PREFIX || "http://127.0.0.1:3000/api/native";
+const API_URL = `${API_PREFIX}/categories`;
 // const API_URL = "https://lukakuvic.vercel.app/api/native/categories";
 type CategoryType = {
   id: string;
@@ -23,14 +20,14 @@ export default function CategoryListPage() {
   const navigate = useNavigate();
   const { openSnackbar } = useSnackbar();
 
-  const [newCategories, setNewCategories] = useState<CategoryType[]>([]);
-
   const categories = useAtomValue(categoriesState);
+
+  const [newCategories, setNewCategories] = useState<CategoryType[]>([]);
 
   const [newCategoryName, setNewCategoryName] = useState<string>("");
   const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
 
-  const token = import.meta.env.VITE_API_ACCESS_TOKEN || "";
+  const accessToken = useAccessTokenStore((state) => state.accessToken);
 
   const handleCreateNewCategory = () => {
     openSnackbar({
@@ -46,7 +43,7 @@ export default function CategoryListPage() {
     fetch(API_URL, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify({ name: newCategoryName }),
     })
@@ -66,7 +63,7 @@ export default function CategoryListPage() {
   useEffect(() => {
     fetch(API_URL, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     })
       .then((res) => res.json())
