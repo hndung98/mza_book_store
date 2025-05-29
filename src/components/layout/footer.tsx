@@ -1,8 +1,11 @@
-import { CartIcon, CategoryIcon, HomeIcon, ProfileIcon } from "./vectors";
-import HorizontalDivider from "./horizontal-divider";
-import { useAtomValue } from "jotai";
-import { cartState } from "@/state";
-import TransitionLink from "./transition-link";
+import TransitionLink from "@/components/features/transition-link";
+import HorizontalDivider from "@/components/ui/horizontal-divider";
+import {
+  ContractIcon,
+  HomeIcon,
+  NotificationIcon,
+  ProfileIcon,
+} from "@/components/ui/icons";
 
 const NAV_ITEMS = [
   {
@@ -11,30 +14,17 @@ const NAV_ITEMS = [
     icon: HomeIcon,
   },
   {
-    name: "Danh mục",
-    path: "/categories",
-    icon: CategoryIcon,
+    name: "Quản lý",
+    path: "/contracts",
+    icon: ContractIcon,
   },
   {
-    name: "Giỏ hàng",
-    path: "/cart",
-    icon: (props) => {
-      const cart = useAtomValue(cartState);
-
-      return (
-        <div className="relative">
-          {cart.length > 0 && (
-            <div className="absolute top-0 left-[18px] h-4 px-1.5 pt-[1.5px] pb-[0.5px] rounded-full bg-[#FF3333] text-white text-[10px] leading-[14px] font-medium shadow-[0_0_0_2px_white]">
-              {cart.length > 9 ? "9+" : cart.length}
-            </div>
-          )}
-          <CartIcon {...props} />
-        </div>
-      );
-    },
+    name: "Thông báo",
+    path: "/notifications",
+    icon: NotificationIcon,
   },
   {
-    name: "Thành viên",
+    name: "Tài khoản",
     path: "/profile",
     icon: ProfileIcon,
   },

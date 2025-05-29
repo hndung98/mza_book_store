@@ -1,20 +1,31 @@
-import { Select } from "@/components/lazyloaded";
-import { SelectSkeleton } from "@/components/skeleton";
-import { useAtom, useAtomValue } from "jotai";
-import { Suspense } from "react";
-import {
-  colorsState,
-  selectedColorState,
-  selectedSizeState,
-  sizesState,
-} from "@/state";
+import { Suspense, useState } from "react";
+
+import { Select } from "@/components/features/lazyloaded";
+import { SelectSkeleton } from "@/components/ui/skeleton";
 import { Color } from "@/types";
 
 export default function ProductFilter() {
-  const sizes = useAtomValue(sizesState);
-  const [size, setSize] = useAtom(selectedSizeState);
-  const colors = useAtomValue(colorsState);
-  const [color, setColor] = useAtom(selectedColorState);
+  const sizes = ["S", "M", "L", "XL"];
+  const [size, setSize] = useState<string | undefined>("S");
+  const colors = [
+    {
+      name: "Đỏ",
+      hex: "#FFC7C7",
+    },
+    {
+      name: "Xanh dương",
+      hex: "#DBEBFF",
+    },
+    {
+      name: "Xanh lá",
+      hex: "#D1F0DB",
+    },
+    {
+      name: "Xám",
+      hex: "#D9E2ED",
+    },
+  ];
+  const [color, setColor] = useState<string | undefined>("Đỏ");
 
   return (
     <div className="flex px-4 py-3 space-x-2 overflow-x-auto">

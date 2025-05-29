@@ -1,4 +1,4 @@
-import Carousel from "@/components/carousel";
+import Carousel from "@/components/ui/carousel";
 import book_banner_1 from "@/static/banners/book_banner_1.jpg";
 import book_banner_2 from "@/static/banners/book_banner_2.jpg";
 import book_banner_3 from "@/static/banners/book_banner_3.jpg";

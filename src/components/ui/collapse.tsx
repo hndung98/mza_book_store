@@ -1,8 +1,39 @@
-import { Fragment, ReactNode, useEffect, useRef, useState } from "react";
-import { MinusIcon, PlusIcon } from "./vectors";
-import HorizontalDivider from "./horizontal-divider";
-import { useRealHeight } from "@/hooks";
-import { animated, useSpring, useSpringValue } from "@react-spring/web";
+import { animated, useSpringValue } from "@react-spring/web";
+import {
+  Fragment,
+  MutableRefObject,
+  ReactNode,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
+
+import HorizontalDivider from "@/components/ui/horizontal-divider";
+import { MinusIcon, PlusIcon } from "@/components/ui/vectors";
+
+function useRealHeight(
+  element: MutableRefObject<HTMLDivElement | null>,
+  defaultValue?: number
+) {
+  const [height, setHeight] = useState(defaultValue ?? 0);
+  useLayoutEffect(() => {
+    if (element.current && typeof ResizeObserver !== "undefined") {
+      const ro = new ResizeObserver((entries: ResizeObserverEntry[]) => {
+        const [{ contentRect }] = entries;
+        setHeight(contentRect.height);
+      });
+      ro.observe(element.current);
+      return () => ro.disconnect();
+    }
+    return () => {};
+  }, [element.current]);
+
+  if (typeof ResizeObserver === "undefined") {
+    return -1;
+  }
+  return height;
+}
 
 export interface CollapseProps {
   items: {

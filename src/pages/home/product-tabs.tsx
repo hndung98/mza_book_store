@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import Section from "@/components/section";
-import Tabs from "@/components/tabs";
-import TransitionLink from "@/components/transition-link";
+import Section from "@/components/ui/section";
+import Tabs from "@/components/ui/tabs";
+import TransitionLink from "@/components/features/transition-link";
 
 type ProductType = {
   id: string;

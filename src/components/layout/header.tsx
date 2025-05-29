@@ -1,18 +1,33 @@
-import { useAtomValue } from "jotai";
-import { useMemo } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import {
+  UIMatch,
+  useLocation,
+  useMatches,
+  useNavigate,
+} from "react-router-dom";
 import { Avatar, Icon } from "zmp-ui";
 
-import { BackIcon } from "@/components/vectors";
-import { useRouteHandle } from "@/hooks";
-import { categoriesStateUpwrapped } from "@/state";
+import { BackIcon } from "@/components/ui/vectors";
 import logo1 from "@/static/tiger-icon.png";
 import { useAccessTokenStore, useLoginModalStore } from "@/stores/auth-store";
 
 const APP_NAME = "Dark Store";
 
+export function useRouteHandle() {
+  const matches = useMatches() as UIMatch<
+    undefined,
+    {
+      title?: string | Function;
+      logo?: boolean;
+      back?: boolean;
+      scrollRestoration?: number;
+    }
+  >[];
+  const lastMatch = matches[matches.length - 1];
+
+  return [lastMatch.handle, lastMatch, matches] as const;
+}
+
 export default function Header() {
-  const categories = useAtomValue(categoriesStateUpwrapped);
   const navigate = useNavigate();
   const location = useLocation();
   const [handle, match] = useRouteHandle();
@@ -23,15 +38,7 @@ export default function Header() {
     (state) => state.clearAccessToken
   );
 
-  const title = useMemo(() => {
-    if (handle) {
-      if (typeof handle.title === "function") {
-        return handle.title({ categories, params: match.params });
-      } else {
-        return handle.title;
-      }
-    }
-  }, [handle, categories]);
+  const title = "";
 
   const showBack = location.key !== "default" && handle?.back !== false;
 

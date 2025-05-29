@@ -1,4 +1,4 @@
-import { SearchIcon } from "@/components/vectors";
+import { SearchIcon } from "@/components/ui/vectors";
 import { forwardRef, HTMLAttributes, HTMLProps } from "react";
 
 const SearchBar = forwardRef<HTMLInputElement, HTMLProps<HTMLInputElement>>(

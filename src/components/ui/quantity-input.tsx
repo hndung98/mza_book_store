@@ -1,5 +1,4 @@
-import Button from "./button";
-import { MinusIcon, PlusIcon } from "./vectors";
+import { MinusIcon, PlusIcon } from "@/components/ui/vectors";
 
 export interface QuantityInputProps {
   value: number;

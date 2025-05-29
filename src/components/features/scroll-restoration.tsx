@@ -1,8 +1,22 @@
-import { useRouteHandle } from "@/hooks";
 import { FC, useEffect } from "react";
-import { useLocation, useMatches } from "react-router";
+import { UIMatch, useLocation, useMatches } from "react-router";
 
 const scrollPositions = {};
+
+export function useRouteHandle() {
+  const matches = useMatches() as UIMatch<
+    undefined,
+    {
+      title?: string | Function;
+      logo?: boolean;
+      back?: boolean;
+      scrollRestoration?: number;
+    }
+  >[];
+  const lastMatch = matches[matches.length - 1];
+
+  return [lastMatch.handle, lastMatch, matches] as const;
+}
 
 function findElementWithScrollbar(rootElement: Element = document.body) {
   if (rootElement.scrollHeight > rootElement.clientHeight) {

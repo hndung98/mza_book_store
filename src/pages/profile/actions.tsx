@@ -1,10 +1,18 @@
+import toast from "react-hot-toast";
+
 import {
   OrderHistoryIcon,
   PackageIcon,
   ProfileIcon,
   VoucherIcon,
-} from "@/components/vectors";
-import { useToBeImplemented } from "@/hooks";
+} from "@/components/ui/vectors";
+
+function useToBeImplemented() {
+  return () =>
+    toast("Chức năng dành cho các bên tích hợp phát triển...", {
+      icon: "🛠️",
+    });
+}
 
 export default function ProfileActions() {
   const toBeImplemented = useToBeImplemented();

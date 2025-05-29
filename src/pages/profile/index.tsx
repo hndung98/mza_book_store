@@ -1,6 +1,6 @@
-import ProfileActions from "./actions";
-import FollowOA from "./follow-oa";
-import Points from "./points";
+import ProfileActions from "@/pages/profile/actions";
+import FollowOA from "@/pages/profile/follow-oa";
+import Points from "@/pages/profile/points";
 
 export default function ProfilePage() {
   return (

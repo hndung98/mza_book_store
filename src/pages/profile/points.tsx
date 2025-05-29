@@ -1,5 +1,5 @@
+import Barcode from "@/pages/profile/barcode";
 import pointsCover from "@/static/points-cover.png";
-import Barcode from "./barcode";
 
 export default function Points() {
   return (

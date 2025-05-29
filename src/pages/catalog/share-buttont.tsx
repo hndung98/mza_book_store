@@ -1,6 +1,7 @@
-import { ChevronRight, ShareDecor } from "@/components/vectors";
-import { Product } from "@/types";
 import { openShareSheet } from "zmp-sdk";
+
+import { ChevronRight, ShareDecor } from "@/components/ui/vectors";
+import { Product } from "@/types";
 
 export default function ShareButton(props: { product: Product }) {
   const share = () => {

@@ -1,25 +1,20 @@
-import Button from "@/components/button";
-import Collapse from "@/components/collapse";
-import HorizontalDivider from "@/components/horizontal-divider";
-import { useAddToCart } from "@/hooks";
-import { productState } from "@/state";
-import { Color, Size } from "@/types";
-import { formatPrice } from "@/utils/format";
-import { useAtomValue } from "jotai";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import {
-  useNavigate,
-  useParams
-} from "react-router-dom";
-import RelatedProducts from "./related-products";
-import ShareButton from "./share-buttont";
-import VariantPicker from "./variant-picker";
+import { useParams } from "react-router-dom";
+
+import Button from "@/components/ui/button";
+import Collapse from "@/components/ui/collapse";
+import HorizontalDivider from "@/components/ui/horizontal-divider";
+import RelatedProducts from "@/pages/catalog/related-products";
+import ShareButton from "@/pages/catalog/share-buttont";
+import VariantPicker from "@/pages/catalog/variant-picker";
+import { Color, Size } from "@/types";
+import { getProductById } from "@/utils/data";
+import { formatPrice } from "@/utils/format";
 
 export default function ProductDetailPage() {
   const { id } = useParams();
-  const navigate = useNavigate();
-  const product = useAtomValue(productState(Number(id)))!;
+  const product = getProductById(Number(id));
   const [selectedColor, setSelectedColor] = useState<Color>();
   const [selectedSize, setSelectedSize] = useState<Size>();
 
@@ -27,15 +22,6 @@ export default function ProductDetailPage() {
     setSelectedColor(product.colors?.[0]);
     setSelectedSize(product.sizes?.[0]);
   }, [id]);
-
-  const { addToCart, setOptions } = useAddToCart(product);
-
-  useEffect(() => {
-    setOptions({
-      size: selectedSize,
-      color: selectedColor?.name,
-    });
-  }, [selectedSize, selectedColor]);
 
   return (
     <div className="w-full h-full flex flex-col">
@@ -122,8 +108,7 @@ export default function ProductDetailPage() {
         <Button
           large
           onClick={() => {
-            addToCart(1);
-            toast.success("Đã thêm vào giỏ hàng");
+            toast.success("Thêm vào giỏ hàng");
           }}
         >
           Thêm vào giỏ
@@ -132,8 +117,7 @@ export default function ProductDetailPage() {
           large
           primary
           onClick={() => {
-            addToCart(1);
-            navigate("/cart");
+            toast.success("Mua ngay");
           }}
         >
           Mua ngay

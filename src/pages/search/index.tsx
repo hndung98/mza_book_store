@@ -1,18 +1,16 @@
-import ProductItem from "@/components/product-item";
-import SearchBar from "@/components/search-bar";
-import Section from "@/components/section";
-import { ProductItemSkeleton } from "@/components/skeleton";
-import { SearchIconLarge } from "@/components/vectors";
-import { useAtom, useAtomValue } from "jotai";
 import { Suspense, useEffect, useRef, useState } from "react";
-import {
-  keywordState,
-  recommendedProductsState,
-  searchResultState,
-} from "@/state";
+
+import ProductItem from "@/components/features/product-item";
+import SearchBar from "@/components/features/search-bar";
+import Section from "@/components/ui/section";
+import { ProductItemSkeleton } from "@/components/ui/skeleton";
+import { SearchIconLarge } from "@/components/ui/vectors";
+import { products, recommendedProducts } from "@/utils/data";
 
 export function SearchResult() {
-  const searchResult = useAtomValue(searchResultState);
+  const searchResult = products.filter((product) =>
+    product.name.toLowerCase().includes("")
+  );
 
   return (
     <div className="w-full space-y-2 bg-section">
@@ -57,12 +55,12 @@ export function SearchResultSkeleton() {
 }
 
 export function RecommendedProducts() {
-  const recommendedProducts = useAtomValue(recommendedProductsState);
+  const data = recommendedProducts;
 
   return (
     <Section title="Gợi ý sản phẩm">
       <div className="py-2 px-4 flex space-x-2 overflow-x-auto">
-        {recommendedProducts.map((product) => (
+        {data.map((product) => (
           <div
             className="flex-none"
             style={{ flexBasis: "calc((100vw - 48px) / 2)" }}
@@ -78,7 +76,7 @@ export function RecommendedProducts() {
 export default function SearchPage() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [localKeyword, setLocalKeyword] = useState("");
-  const [keyword, setKeyword] = useAtom(keywordState);
+  const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
     if (inputRef.current) {

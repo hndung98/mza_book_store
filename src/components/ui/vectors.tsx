@@ -1,4 +1,4 @@
-import { HTMLProps, SVGProps } from "react";
+import { HTMLProps } from "react";
 
 export function HomeIcon(props: { active?: boolean }) {
   if (props.active) {

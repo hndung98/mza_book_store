@@ -1,6 +1,6 @@
+import { nativeStorage } from "zmp-sdk/apis";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { nativeStorage } from "zmp-sdk/apis";
 
 import { CartItem } from "@/types";
 

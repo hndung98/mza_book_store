@@ -1,23 +1,46 @@
-import Layout from "@/components/layout";
-import CartPage from "@/pages/cart";
-import ProductListPage from "@/pages/catalog/product-list";
+import { createBrowserRouter } from "react-router-dom";
+
+import RootLayout from "@/components/layout/root-layout";
 import CategoryListPage from "@/pages/catalog/category-list";
 import ProductDetailPage from "@/pages/catalog/product-detail";
+import ProductListPage from "@/pages/catalog/product-list";
+import ContractsPage from "@/pages/contracts";
 import HomePage from "@/pages/home";
+import NotificationsPage from "@/pages/notifications";
 import ProfilePage from "@/pages/profile";
 import SearchPage from "@/pages/search";
-import { createBrowserRouter } from "react-router-dom";
 import { getBasePath } from "@/utils/zma";
 
 const router = createBrowserRouter(
   [
     {
       path: "/",
-      element: <Layout />,
+      element: <RootLayout />,
       children: [
         {
           path: "/",
           element: <HomePage />,
+          handle: {
+            logo: true,
+          },
+        },
+        {
+          path: "/contracts",
+          element: <ContractsPage />,
+          handle: {
+            logo: true,
+          },
+        },
+        {
+          path: "/notifications",
+          element: <NotificationsPage />,
+          handle: {
+            logo: true,
+          },
+        },
+        {
+          path: "/profile",
+          element: <ProfilePage />,
           handle: {
             logo: true,
           },
@@ -28,20 +51,6 @@ const router = createBrowserRouter(
           handle: {
             title: "Danh mục sản phẩm",
             back: false,
-          },
-        },
-        {
-          path: "/cart",
-          element: <CartPage />,
-          handle: {
-            title: "Giỏ hàng",
-          },
-        },
-        {
-          path: "/profile",
-          element: <ProfilePage />,
-          handle: {
-            logo: true,
           },
         },
         {

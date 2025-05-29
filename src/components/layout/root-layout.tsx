@@ -2,13 +2,13 @@ import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import { Outlet } from "react-router-dom";
 
-import Footer from "@/components/footer";
-import Header from "@/components/header";
-import LoginModal from "@/components/login-modal";
-import { ScrollRestoration } from "@/components/scroll-restoration";
-import { PageSkeleton } from "@/components/skeleton";
+import LoginModal from "@/components/features/login-modal";
+import { ScrollRestoration } from "@/components/features/scroll-restoration";
+import Footer from "@/components/layout/footer";
+import Header from "@/components/layout/header";
+import { PageSkeleton } from "@/components/ui/skeleton";
 
-export default function Layout() {
+export default function RootLayout() {
   return (
     <div className="w-screen h-screen flex flex-col bg-background text-foreground">
       <Header />

@@ -1,6 +1,7 @@
-import { ReactNode, useEffect, useState } from "react";
-import { ChevronDown } from "./vectors";
+import { ReactNode, useState } from "react";
 import { Picker } from "zmp-ui";
+
+import { ChevronDown } from "@/components/ui/vectors";
 
 export interface SelectProps<T> {
   renderTitle: (selectedItem?: T) => ReactNode;

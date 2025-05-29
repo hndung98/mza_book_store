@@ -1,4 +1,4 @@
-import { getConfig } from "./template";
+import { getConfig } from "@/utils/template";
 
 const API_URL = getConfig((config) => config.template.apiUrl);
 
